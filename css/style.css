@@ -276,50 +276,57 @@ nav ul{
 }
 
 }
-/* ================= LOGIN PAGE ================= */
 
-.login-container{
+/* ================= SHARED AUTHENTICATION STYLES ================= */
+
+.login-container,
+.register-container{
     width:100%;
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#0F4C81,#1d78c1);
+    padding:20px;
 }
 
-.login-box{
-    width:420px;
+.login-box,
+.register-box{
+    width:100%;
+    max-width:420px;
     background:white;
-    padding:40px;
+    padding:35px 40px;
     border-radius:15px;
     box-shadow:0 15px 35px rgba(0,0,0,.2);
 }
 
-.login-box h1{
+.login-box h1,
+.register-box h1{
     text-align:center;
     color:#0F4C81;
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
-.login-box p{
+.login-box p,
+.register-box p{
     text-align:center;
     color:#666;
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
 .input-box{
-    margin-bottom:18px;
+    margin-bottom:15px;
 }
 
 .input-box label{
     display:block;
-    margin-bottom:8px;
+    margin-bottom:6px;
     font-weight:500;
 }
 
 .input-box input{
     width:100%;
-    padding:12px;
+    padding:10px 12px;
     border:1px solid #ccc;
     border-radius:8px;
     font-size:15px;
@@ -334,8 +341,15 @@ nav ul{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:20px 0;
+    margin:15px 0 20px;
     font-size:14px;
+}
+
+.remember label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
 }
 
 .remember a{
@@ -343,7 +357,8 @@ nav ul{
     text-decoration:none;
 }
 
-.login-btn{
+.login-btn,
+.register-btn{
     width:100%;
     padding:14px;
     background:#0F4C81;
@@ -355,16 +370,20 @@ nav ul{
     transition:.3s;
 }
 
-.login-btn:hover{
+.login-btn:hover,
+.register-btn:hover{
     background:#08345d;
 }
 
-.register-link{
+.register-link,
+.login-link{
     margin-top:20px;
     text-align:center;
 }
 
-.register-link a{
+.register-link a,
+.login-link a,
+.back-home{
     color:#0F4C81;
     text-decoration:none;
     font-weight:600;
@@ -374,7 +393,4 @@ nav ul{
     display:block;
     text-align:center;
     margin-top:20px;
-    text-decoration:none;
-    color:#0F4C81;
-    font-weight:600;
 }
