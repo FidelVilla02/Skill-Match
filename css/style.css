@@ -14,8 +14,8 @@ html{
 }
 
 body{
-    background:#f5f7fb;
-    color:#333;
+    background:#F8F9FF;
+    color:#33343D;
 }
 
 /* ================= NAVBAR ================= */
@@ -23,7 +23,7 @@ body{
 header{
     width:100%;
     background:white;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
+    box-shadow:0 2px 10px rgba(91,95,239,.08);
     position:sticky;
     top:0;
     z-index:1000;
@@ -39,7 +39,7 @@ nav{
 }
 
 .logo h2{
-    color:#0F4C81;
+    color:#5B5FEF;
     font-size:30px;
 }
 
@@ -54,13 +54,13 @@ nav ul li{
 
 nav ul li a{
     text-decoration:none;
-    color:#333;
+    color:#33343D;
     font-weight:500;
     transition:.3s;
 }
 
 nav ul li a:hover{
-    color:#0F4C81;
+    color:#5B5FEF;
 }
 
 .buttons a{
@@ -72,22 +72,22 @@ nav ul li a:hover{
 }
 
 .login{
-    color:#0F4C81;
-    border:2px solid #0F4C81;
+    color:#5B5FEF;
+    border:2px solid #5B5FEF;
 }
 
 .login:hover{
-    background:#0F4C81;
+    background:#5B5FEF;
     color:white;
 }
 
 .register{
-    background:#0F4C81;
+    background:#5B5FEF;
     color:white;
 }
 
 .register:hover{
-    background:#08345d;
+    background:#4649C8;
 }
 
 /* ================= HERO ================= */
@@ -107,7 +107,7 @@ nav ul li a:hover{
 
 .hero-text h1{
     font-size:55px;
-    color:#0F4C81;
+    color:#5B5FEF;
     margin-bottom:20px;
 }
 
@@ -120,7 +120,7 @@ nav ul li a:hover{
 .btn{
     display:inline-block;
     text-decoration:none;
-    background:#0F4C81;
+    background:#5B5FEF;
     color:white;
     padding:15px 35px;
     border-radius:10px;
@@ -128,7 +128,7 @@ nav ul li a:hover{
 }
 
 .btn:hover{
-    background:#08345d;
+    background:#4649C8;
 }
 
 .hero-image{
@@ -138,7 +138,7 @@ nav ul li a:hover{
 .hero-image img{
     width:100%;
     border-radius:20px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
+    box-shadow:0 15px 40px rgba(91,95,239,.15);
 }
 
 /* ================= SECTIONS ================= */
@@ -156,7 +156,7 @@ nav ul li a:hover{
 .how h2,
 .contact h2{
     text-align:center;
-    color:#0F4C81;
+    color:#5B5FEF;
     margin-bottom:25px;
     font-size:35px;
 }
@@ -183,7 +183,7 @@ nav ul li a:hover{
     padding:30px;
     border-radius:15px;
     text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    box-shadow:0 5px 20px rgba(91,95,239,.08);
     transition:.3s;
 }
 
@@ -192,7 +192,7 @@ nav ul li a:hover{
 }
 
 .card h3{
-    color:#0F4C81;
+    color:#5B5FEF;
     margin-bottom:15px;
 }
 
@@ -210,7 +210,7 @@ nav ul li a:hover{
     text-align:center;
     padding:30px;
     border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    box-shadow:0 5px 15px rgba(91,95,239,.08);
 }
 
 .step h3{
@@ -219,7 +219,7 @@ nav ul li a:hover{
     margin:auto;
     margin-bottom:15px;
     border-radius:50%;
-    background:#0F4C81;
+    background:#5B5FEF;
     color:white;
     display:flex;
     justify-content:center;
@@ -241,7 +241,7 @@ nav ul li a:hover{
 /* ================= FOOTER ================= */
 
 footer{
-    background:#0F4C81;
+    background:#5B5FEF;
     color:white;
     text-align:center;
     padding:25px;
@@ -286,7 +286,7 @@ nav ul{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#0F4C81,#1d78c1);
+    background:linear-gradient(135deg,#5B5FEF,#8588F5);
     padding:20px;
 }
 
@@ -297,13 +297,13 @@ nav ul{
     background:white;
     padding:35px 40px;
     border-radius:15px;
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    box-shadow:0 15px 35px rgba(91,95,239,.2);
 }
 
 .login-box h1,
 .register-box h1{
     text-align:center;
-    color:#0F4C81;
+    color:#5B5FEF;
     margin-bottom:8px;
 }
 
@@ -327,13 +327,13 @@ nav ul{
 .input-box input{
     width:100%;
     padding:10px 12px;
-    border:1px solid #ccc;
+    border:1px solid #D9DBF2;
     border-radius:8px;
     font-size:15px;
 }
 
 .input-box input:focus{
-    border-color:#0F4C81;
+    border-color:#5B5FEF;
     outline:none;
 }
 
@@ -353,7 +353,7 @@ nav ul{
 }
 
 .remember a{
-    color:#0F4C81;
+    color:#5B5FEF;
     text-decoration:none;
 }
 
@@ -361,7 +361,7 @@ nav ul{
 .register-btn{
     width:100%;
     padding:14px;
-    background:#0F4C81;
+    background:#5B5FEF;
     color:white;
     border:none;
     border-radius:8px;
@@ -372,7 +372,7 @@ nav ul{
 
 .login-btn:hover,
 .register-btn:hover{
-    background:#08345d;
+    background:#4649C8;
 }
 
 .register-link,
@@ -384,7 +384,7 @@ nav ul{
 .register-link a,
 .login-link a,
 .back-home{
-    color:#0F4C81;
+    color:#5B5FEF;
     text-decoration:none;
     font-weight:600;
 }
