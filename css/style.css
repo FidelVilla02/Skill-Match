@@ -14,13 +14,8 @@ html{
 }
 
 body{
-<<<<<<< HEAD
-    background:#f5f7fb;
-    color:#333;
-=======
     background:#F8F9FF;
     color:#33343D;
->>>>>>> caac02b (third commit)
 }
 
 /* ================= NAVBAR ================= */
@@ -28,11 +23,7 @@ body{
 header{
     width:100%;
     background:white;
-<<<<<<< HEAD
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-=======
     box-shadow:0 2px 10px rgba(91,95,239,.08);
->>>>>>> caac02b (third commit)
     position:sticky;
     top:0;
     z-index:1000;
@@ -48,11 +39,7 @@ nav{
 }
 
 .logo h2{
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
     font-size:30px;
 }
 
@@ -67,21 +54,13 @@ nav ul li{
 
 nav ul li a{
     text-decoration:none;
-<<<<<<< HEAD
-    color:#333;
-=======
     color:#33343D;
->>>>>>> caac02b (third commit)
     font-weight:500;
     transition:.3s;
 }
 
 nav ul li a:hover{
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
 }
 
 .buttons a{
@@ -93,39 +72,22 @@ nav ul li a:hover{
 }
 
 .login{
-<<<<<<< HEAD
-    color:#0F4C81;
-    border:2px solid #0F4C81;
-}
-
-.login:hover{
-    background:#0F4C81;
-=======
     color:#5B5FEF;
     border:2px solid #5B5FEF;
 }
 
 .login:hover{
     background:#5B5FEF;
->>>>>>> caac02b (third commit)
     color:white;
 }
 
 .register{
-<<<<<<< HEAD
-    background:#0F4C81;
-=======
     background:#5B5FEF;
->>>>>>> caac02b (third commit)
     color:white;
 }
 
 .register:hover{
-<<<<<<< HEAD
-    background:#08345d;
-=======
     background:#4649C8;
->>>>>>> caac02b (third commit)
 }
 
 /* ================= HERO ================= */
@@ -145,11 +107,7 @@ nav ul li a:hover{
 
 .hero-text h1{
     font-size:55px;
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
     margin-bottom:20px;
 }
 
@@ -162,11 +120,7 @@ nav ul li a:hover{
 .btn{
     display:inline-block;
     text-decoration:none;
-<<<<<<< HEAD
-    background:#0F4C81;
-=======
     background:#5B5FEF;
->>>>>>> caac02b (third commit)
     color:white;
     padding:15px 35px;
     border-radius:10px;
@@ -174,11 +128,7 @@ nav ul li a:hover{
 }
 
 .btn:hover{
-<<<<<<< HEAD
-    background:#08345d;
-=======
     background:#4649C8;
->>>>>>> caac02b (third commit)
 }
 
 .hero-image{
@@ -188,11 +138,7 @@ nav ul li a:hover{
 .hero-image img{
     width:100%;
     border-radius:20px;
-<<<<<<< HEAD
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
-=======
     box-shadow:0 15px 40px rgba(91,95,239,.15);
->>>>>>> caac02b (third commit)
 }
 
 /* ================= SECTIONS ================= */
@@ -210,11 +156,7 @@ nav ul li a:hover{
 .how h2,
 .contact h2{
     text-align:center;
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
     margin-bottom:25px;
     font-size:35px;
 }
@@ -241,11 +183,7 @@ nav ul li a:hover{
     padding:30px;
     border-radius:15px;
     text-align:center;
-<<<<<<< HEAD
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-=======
     box-shadow:0 5px 20px rgba(91,95,239,.08);
->>>>>>> caac02b (third commit)
     transition:.3s;
 }
 
@@ -254,11 +192,7 @@ nav ul li a:hover{
 }
 
 .card h3{
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
     margin-bottom:15px;
 }
 
@@ -276,11 +210,7 @@ nav ul li a:hover{
     text-align:center;
     padding:30px;
     border-radius:15px;
-<<<<<<< HEAD
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-=======
     box-shadow:0 5px 15px rgba(91,95,239,.08);
->>>>>>> caac02b (third commit)
 }
 
 .step h3{
@@ -289,11 +219,7 @@ nav ul li a:hover{
     margin:auto;
     margin-bottom:15px;
     border-radius:50%;
-<<<<<<< HEAD
-    background:#0F4C81;
-=======
     background:#5B5FEF;
->>>>>>> caac02b (third commit)
     color:white;
     display:flex;
     justify-content:center;
@@ -315,11 +241,7 @@ nav ul li a:hover{
 /* ================= FOOTER ================= */
 
 footer{
-<<<<<<< HEAD
-    background:#0F4C81;
-=======
     background:#5B5FEF;
->>>>>>> caac02b (third commit)
     color:white;
     text-align:center;
     padding:25px;
@@ -364,11 +286,7 @@ nav ul{
     display:flex;
     justify-content:center;
     align-items:center;
-<<<<<<< HEAD
-    background:linear-gradient(135deg,#0F4C81,#1d78c1);
-=======
     background:linear-gradient(135deg,#5B5FEF,#8588F5);
->>>>>>> caac02b (third commit)
     padding:20px;
 }
 
@@ -379,21 +297,13 @@ nav ul{
     background:white;
     padding:35px 40px;
     border-radius:15px;
-<<<<<<< HEAD
-    box-shadow:0 15px 35px rgba(0,0,0,.2);
-=======
     box-shadow:0 15px 35px rgba(91,95,239,.2);
->>>>>>> caac02b (third commit)
 }
 
 .login-box h1,
 .register-box h1{
     text-align:center;
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
     margin-bottom:8px;
 }
 
@@ -417,21 +327,13 @@ nav ul{
 .input-box input{
     width:100%;
     padding:10px 12px;
-<<<<<<< HEAD
-    border:1px solid #ccc;
-=======
     border:1px solid #D9DBF2;
->>>>>>> caac02b (third commit)
     border-radius:8px;
     font-size:15px;
 }
 
 .input-box input:focus{
-<<<<<<< HEAD
-    border-color:#0F4C81;
-=======
     border-color:#5B5FEF;
->>>>>>> caac02b (third commit)
     outline:none;
 }
 
@@ -451,11 +353,7 @@ nav ul{
 }
 
 .remember a{
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
     text-decoration:none;
 }
 
@@ -463,11 +361,7 @@ nav ul{
 .register-btn{
     width:100%;
     padding:14px;
-<<<<<<< HEAD
-    background:#0F4C81;
-=======
     background:#5B5FEF;
->>>>>>> caac02b (third commit)
     color:white;
     border:none;
     border-radius:8px;
@@ -478,11 +372,7 @@ nav ul{
 
 .login-btn:hover,
 .register-btn:hover{
-<<<<<<< HEAD
-    background:#08345d;
-=======
     background:#4649C8;
->>>>>>> caac02b (third commit)
 }
 
 .register-link,
@@ -494,11 +384,7 @@ nav ul{
 .register-link a,
 .login-link a,
 .back-home{
-<<<<<<< HEAD
-    color:#0F4C81;
-=======
     color:#5B5FEF;
->>>>>>> caac02b (third commit)
     text-decoration:none;
     font-weight:600;
 }
