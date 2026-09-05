@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = e.target.closest('.delete-btn');
             if (!btn) return;
 
-            if (!confirm('Are you sure you want to delete this job posting?')) return;
+            if (!confirm('Are you sure you want to permanently delete this job posting?')) return;
 
             const jobId = Number(btn.dataset.id);
             const allJobs = JSON.parse(localStorage.getItem('smJobs') || '[]');
