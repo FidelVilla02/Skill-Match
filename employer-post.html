@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job | SkillMatch Toledo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <h2>SkillMatch Toledo</h2>
+        </div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="employer-post.html" class="active">Post a Job</a></li>
+        </ul>
+
+        <div class="buttons">
+            <a href="#" id="logoutBtn" class="login">Logout</a>
+        </div>
+    </nav>
+</header>
+
+<section class="dashboard">
+
+    <div class="dashboard-head">
+        <h1>Post a Job</h1>
+        <p>Create a new job listing to reach qualified applicants.</p>
+    </div>
+
+    <div class="post-layout">
+
+        <div class="post-box">
+            <h2>New Job Listing</h2>
+
+            <form id="postForm">
+
+                <div class="input-box">
+                    <label>Job Title</label>
+                    <input type="text" id="jobTitle" placeholder="e.g. Web Developer" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Company Name</label>
+                    <input type="text" id="company" placeholder="e.g. Toledo Tech Solutions" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Category</label>
+                    <select id="category">
+                        <option value="IT">IT</option>
+                        <option value="Design">Design</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Customer Service">Customer Service</option>
+                        <option value="Engineering">Engineering</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <label>Location</label>
+                    <input type="text" id="location" placeholder="e.g. Toledo, PH" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Salary Range</label>
+                    <input type="text" id="salary" placeholder="e.g. PHP 25,000 - 35,000">
+                </div>
+
+                <div class="input-box">
+                    <label>Required Skills (comma separated)</label>
+                    <input type="text" id="skills" placeholder="e.g. JavaScript, HTML, CSS">
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Post Job
+                </button>
+
+            </form>
+        </div>
+
+        <div class="post-box">
+            <h2>My Job Postings</h2>
+            <div id="myJobsList" class="job-grid"></div>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
+</footer>
+
+<script src="js/employer-post.js"></script>
+
+</body>
+</html>
