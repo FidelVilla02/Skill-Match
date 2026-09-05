@@ -394,3 +394,220 @@ nav ul{
     text-align:center;
     margin-top:20px;
 }
+
+/* ================= DASHBOARD ================= */
+
+nav ul li a.active{
+    color:#5B5FEF;
+    font-weight:600;
+}
+
+.dashboard{
+    width:90%;
+    margin:60px auto;
+}
+
+.dashboard-head{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.dashboard-head h1{
+    color:#5B5FEF;
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.dashboard-head p{
+    font-size:17px;
+    color:#555;
+}
+
+.dashboard-filters{
+    display:flex;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.dashboard-filters input{
+    flex:1;
+    padding:12px 15px;
+    border:1px solid #D9DBF2;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.dashboard-filters input:focus{
+    border-color:#5B5FEF;
+    outline:none;
+}
+
+.dashboard-filters select{
+    padding:12px 15px;
+    border:1px solid #D9DBF2;
+    border-radius:8px;
+    font-size:15px;
+    background:white;
+    cursor:pointer;
+}
+
+.post-box select{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid #D9DBF2;
+    border-radius:8px;
+    font-size:15px;
+    background:white;
+}
+
+.job-count p{
+    color:#555;
+    margin-bottom:20px;
+}
+
+/* ================= JOB CARDS ================= */
+
+.job-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.job-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(91,95,239,.08);
+    transition:.3s;
+    display:flex;
+    flex-direction:column;
+}
+
+.job-card:hover{
+    transform:translateY(-6px);
+}
+
+.job-card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.job-card-top h3{
+    color:#5B5FEF;
+    font-size:20px;
+}
+
+.job-posted{
+    font-size:12px;
+    color:#999;
+    white-space:nowrap;
+}
+
+.job-company{
+    color:#666;
+    margin:8px 0 4px;
+    font-size:14px;
+}
+
+.job-salary{
+    font-weight:600;
+    color:#4649C8;
+    margin-bottom:12px;
+}
+
+.job-skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.skill-tag{
+    background:#F0F1FF;
+    color:#5B5FEF;
+    font-size:12px;
+    font-weight:500;
+    padding:5px 10px;
+    border-radius:20px;
+}
+
+.apply-btn,
+.delete-btn{
+    margin-top:auto;
+    padding:11px;
+    border:none;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.apply-btn{
+    background:#5B5FEF;
+    color:white;
+}
+
+.apply-btn:hover{
+    background:#4649C8;
+}
+
+.apply-btn:disabled{
+    background:#C9CBE8;
+    cursor:not-allowed;
+}
+
+.delete-btn{
+    background:#FFEFEF;
+    color:#E05656;
+}
+
+.delete-btn:hover{
+    background:#E05656;
+    color:white;
+}
+
+.empty{
+    color:#888;
+    text-align:center;
+    padding:40px 0;
+}
+
+/* ================= POST A JOB ================= */
+
+.post-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    align-items:start;
+}
+
+.post-box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(91,95,239,.08);
+}
+
+.post-box h2{
+    color:#5B5FEF;
+    margin-bottom:20px;
+}
+
+.post-box .job-grid{
+    grid-template-columns:1fr;
+    gap:15px;
+    margin-top:10px;
+}
+
+@media(max-width:900px){
+    .dashboard-filters{
+        flex-direction:column;
+    }
+
+    .post-layout{
+        grid-template-columns:1fr;
+    }
+}
