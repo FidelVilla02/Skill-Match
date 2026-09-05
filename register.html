@@ -1,70 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | SkillMatch Cebu</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register | SkillMatch Cebu</title>
 
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
 
-<div class="register-container">
+        <div class="register-container">
 
-    <div class="register-box">
+            <div class="register-box">
 
-        <h1>Create an Account</h1>
-        <p>Join SkillMatch Cebu today</p>
+                <h1>Create an Account</h1>
+                <p>Join SkillMatch Cebu today</p>
 
-        <form action="#" method="POST" id="registerForm">
+                <form action="#" method="POST" id="registerForm">
 
-            <div class="input-box">
-                <label>Full Name</label>
-                <input type="text" id="fullName" placeholder="Enter Your full name" required>
+                    <div class="input-box">
+                        <label>Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter Your full name" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Email Address</label>
+                        <input type="email" id="email" placeholder="Enter Your email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Create a password" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label>Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+
+                    <div class="remember">
+                        <label>
+                            <input type="checkbox" required>
+                            I agree to the <a href="#">Terms & Conditions</a>
+                        </label>
+                    </div>
+
+                        <button type="submit" class="register-btn">
+                            Register
+                        </button>
+                    </div>
+
+                </form>
+
+                <p class="login-link">
+                    Already have an account?
+                    <a href="login.html">Login Here</a>
+                </p>
+
+                <a href="index.html" class="back-home">
+                    ← Back to Home
+                </a>
+
             </div>
 
-            <div class="input-box">
-                <label>Email Address</label>
-                <input type="email" id="email" placeholder="Enter Your email" required>
-            </div>
+        </div>
 
-            <div class="input-box">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="Create a password" required>
-            </div>
+        <script src="js/auth.js"></script>
 
-            <div class="input-box">
-                <label>Confirm Password</label>
-                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
-            </div>
-
-            <div class="remember">
-                <label>
-                    <input type="checkbox" required>
-                    I agree to the <a href="#">Terms & Conditions</a>
-                </label>
-            </div>
-
-            <button type="submit" class="register-btn">
-                Register
-            </button>
-
-        </form>
-
-        <p class="login-link">
-            Already have an account?
-            <a href="login.html">Login Here</a>
-        </p>
-
-        <a href="index.html" class="back-home">
-            ← Back to Home
-        </a>
-
-    </div>
-
-</div>
-
-<script src="js/auth.js"></script>
-
-</body>
+    </body>
 </html>
