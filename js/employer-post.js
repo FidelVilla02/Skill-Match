@@ -2,11 +2,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ---------- GUARD: require login ----------
+    // ---------- GUARD: employers only ----------
     const currentUser = JSON.parse(localStorage.getItem('smCurrentUser') || 'null');
 
     if (!currentUser) {
         window.location.href = 'login.html';
+        return;
+    }
+
+    if (currentUser.role !== 'employer') {
+        window.location.href = 'jobs.html';
         return;
     }
 

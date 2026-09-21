@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
+            const role = (document.querySelector('input[name="role"]:checked') || {}).value || 'jobseeker';
 
             if (!fullName || !email || !password || !confirmPassword) {
                 alert('Please fill out all fields.');
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            users.push({ fullName, email, password });
+            users.push({ fullName, email, password, role });
             localStorage.setItem('smUsers', JSON.stringify(users));
 
             alert('Account created successfully! You can now log in.');
@@ -69,9 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Store logged-in user
-            localStorage.setItem('smCurrentUser', JSON.stringify({ email: user.email, fullName: user.fullName }));
+            localStorage.setItem('smCurrentUser', JSON.stringify({
+                email: user.email,
+                fullName: user.fullName,
+                role: user.role || 'jobseeker'
+            }));
             alert('Login successful! Welcome back.');
-            window.location.href = 'dashboard.html';
+            window.location.href = user.role === 'employer' ? 'dashboard.html' : 'jobs.html';
         });
     }
 

@@ -30,27 +30,31 @@
         <section class="dashboard">
 
             <div class="dashboard-head">
-                <h1>Job Dashboard</h1>
-                <p>Welcome back, <strong id="userName">User</strong>! Find jobs that match your skills.</p>
+                <h1>Employer Dashboard</h1>
+                <p>Welcome back, <strong id="userName">Employer</strong>! Manage your job postings and applications.</p>
             </div>
 
-            <div class="dashboard-filters">
-                <input type="text" id="searchInput" placeholder="Search by title, company, or skill...">
-                <select id="categoryFilter">
-                    <option value="All">All Categories</option>
-                    <option value="IT">IT</option>
-                    <option value="Design">Design</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Customer Service">Customer Service</option>
-                    <option value="Engineering">Engineering</option>
-                </select>
-            </div>
-            
-            <div class="job-count">
-                <p><span id="jobCount">0</span> job(s) found</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="statPostings">0</h3>
+                    <p>Total Postings</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="statApplicants">0</h3>
+                    <p>Applications Received</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="statSeekers">0</h3>
+                    <p>Registered Job Seekers</p>
+                </div>
             </div>
 
-            <div id="jobGrid" class="job-grid"></div>
+            <div class="dashboard-head">
+                <h1>My Job Postings</h1>
+                <p>Browse your posted jobs or <a href="employer-post.html" style="color:#0A8F55;">post a new one</a>.</p>
+            </div>
+
+            <div id="myJobsList" class="job-grid"></div>
         </section>
 
         <footer>
