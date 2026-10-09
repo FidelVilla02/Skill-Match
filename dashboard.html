@@ -11,17 +11,24 @@
 
         <header>
             <nav>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
                 <div class="logo">
                     <h2>SkillMatch Toledo</h2>
                 </div>
 
-                <ul>
-                    <li><a href="index.html">Home</a></li>
+                <ul id="navLinks">
+                    
                     <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="applicants.html">Applicants</a></li>
                     <li><a href="employer-post.html">Post a Job</a></li>
+                    <li><a href="profile.html">Business</a></li>
                 </ul>
 
                 <div class="buttons">
+                    <span class="nav-user">Hi, <strong id="navName">Employer</strong></span>
                     <a href="#" id="logoutBtn" class="login">Logout</a>
                 </div>
             </nav>
@@ -31,36 +38,68 @@
 
             <div class="dashboard-head">
                 <h1>Employer Dashboard</h1>
-                <p>Welcome back, <strong id="userName">Employer</strong>! Manage your job postings and applications.</p>
+                <p>Welcome back, <strong id="userName">Employer</strong>! Review applicants and manage your posts.</p>
+            </div>
+
+            <div class="profile-nudge" id="profileNudge" hidden>
+                <p><strong>Your business profile is empty.</strong> Add your business name so applicants see the right name.</p>
+                <a href="profile.html" class="btn">Add my business details</a>
             </div>
 
             <div class="stats-grid">
                 <div class="stat-card">
                     <h3 id="statPostings">0</h3>
-                    <p>Total Postings</p>
+                    <p>Open Postings</p>
                 </div>
                 <div class="stat-card">
                     <h3 id="statApplicants">0</h3>
-                    <p>Applications Received</p>
+                    <p>Total Applicants</p>
                 </div>
                 <div class="stat-card">
-                    <h3 id="statSeekers">0</h3>
-                    <p>Registered Job Seekers</p>
+                    <h3 id="statShortlisted">0</h3>
+                    <p>Shortlisted</p>
                 </div>
+                <div class="stat-card">
+                    <h3 id="statInterviews">0</h3>
+                    <p>Interviews Set</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="statHired">0</h3>
+                    <p>Hired</p>
+                </div>
+            </div>
+
+            <div class="pipeline-summary">
+                <h2>Where your applicants stand</h2>
+                <div id="pipelineBars" class="pipeline-bars"></div>
+                <a href="applicants.html" class="btn">Review applicants</a>
             </div>
 
             <div class="dashboard-head">
                 <h1>My Job Postings</h1>
-                <p>Browse your posted jobs or <a href="employer-post.html" style="color:#0A8F55;">post a new one</a>.</p>
+                <p>Browse your posts or <a href="employer-post.html" class="inline-link">post a new one</a>.</p>
             </div>
 
             <div id="myJobsList" class="job-grid"></div>
+
+            <div class="demo-tools">
+                <h2>Demo data</h2>
+                <p>
+                    This is a frontend-only build, so everything is stored in this browser.
+                    Resetting restores the demo accounts, jobs, and applicants.
+                </p>
+                <button type="button" class="btn-ghost" id="resetDemoBtn">Reset demo data</button>
+            </div>
+
         </section>
 
         <footer>
-            <p>© 2026 SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
+            <p>&copy; <span data-year>2026</span> SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
         </footer>
 
+        <script src="js/utils.js"></script>
+        <script src="js/store.js"></script>
         <script src="js/dashboard.js"></script>
+
     </body>
 </html>

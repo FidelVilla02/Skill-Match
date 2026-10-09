@@ -14,54 +14,55 @@
             <div class="register-box">
 
                 <h1>Create an Account</h1>
-                <p>Join SkillMatch Toledo today</p>
+                <p>No diploma required. Whether you are hiring or job hunting, start here.</p>
 
-                <form action="#" method="POST" id="registerForm">
+                <form id="registerForm" autocomplete="off">
 
                     <div class="input-box">
-                        <label>Full Name</label>
-                        <input type="text" id="fullName" placeholder="Enter Your full name" required>
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
                     </div>
 
                     <div class="input-box">
-                        <label>Email Address</label>
-                        <input type="email" id="email" placeholder="Enter Your email" required>
+                        <label for="username">User Name</label>
+                        <input type="text" id="username" placeholder="e.g. delia.ramos" required autocomplete="username">
+                        <p class="hint">3-20 characters. Letters, numbers, dots and underscores. This is how you appear in the app.</p>
                     </div>
 
                     <div class="input-box">
-                        <label>Password</label>
-                        <input type="password" id="password" placeholder="Create a password" required>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required autocomplete="email">
                     </div>
 
                     <div class="input-box">
-                        <label>Confirm Password</label>
-                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="At least 6 characters" required autocomplete="new-password">
                     </div>
 
                     <div class="input-box">
-                        <label>Account Type</label>
-                        <div class="role-options">
-                            <label class="role-option">
-                                <input type="radio" name="role" value="jobseeker" checked>
-                                <span>Job Seeker</span>
-                            </label>
-                            <label class="role-option">
-                                <input type="radio" name="role" value="employer">
-                                <span>Employer</span>
-                            </label>
-                        </div>
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required autocomplete="new-password">
                     </div>
+
+                    <p class="hint hint-block">
+                        You will add your skills or business details on your profile page right after signing in.
+                    </p>
 
                     <div class="remember">
                         <label>
-                            <input type="checkbox" required>
-                            I agree to the <a href="#">Terms & Conditions</a>
+                            <input type="checkbox" id="termsCheck" required>
+                            I agree to the <a href="terms.html" target="_blank">Terms &amp; Conditions</a>
                         </label>
                     </div>
 
-                    <button type="submit" class="register-btn">
-                        Register
-                    </button>
+                    <p class="hint hint-block role-picker-hint">
+                        Pick the account that matches what you are here to do.
+                    </p>
+
+                    <div class="register-actions">
+                        <button type="submit" class="register-btn" data-role="jobseeker">Create job seeker account</button>
+                        <button type="submit" class="register-btn btn-outline" data-role="employer">Create employer account</button>
+                    </div>
 
                 </form>
 
@@ -71,13 +72,15 @@
                 </p>
 
                 <a href="index.html" class="back-home">
-                    ← Back to Home
+                    &larr; Back to Home
                 </a>
 
             </div>
 
         </div>
 
+        <script src="js/utils.js"></script>
+        <script src="js/store.js"></script>
         <script src="js/auth.js"></script>
 
     </body>

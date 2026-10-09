@@ -1,125 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SkillMatch Toledo</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch Toledo | Jobs open to everyone</title>
 
-        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    </head>
-    <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
 
-        <header>
-            <nav>
-                <div class="logo">
-                    <h2>SkillMatch Toledo</h2>
-                </div>
-
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-
-                <div class="buttons">
-                    <a href="login.html" class="login">Login</a>
-                    <a href="register.html" class="register">Register</a>
-                </div>
-            </nav>
-        </header>
-
-        <section class="hero">
-            <div class="hero-text">
-                <h1>Find the Right Job for You That Match Your Skills</h1>
-                <p>
-                    SkillMatch Toledo connects job seekers and employers across Toledo.
-                    Discover opportunities that match your skills, education, and experience.
-                </p>
-                <a href="register.html" class="btn">Get Started</a>
+    <header>
+        <nav>
+            <div class="logo">
+                <h2>SkillMatch Toledo</h2>
             </div>
 
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800" alt="People Working">
-            </div>
-        
-        </section>
+            <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-        <section id="about" class="about">
-            <h2>About SkillMatch Toledo</h2>
+            <ul id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#how">How It Works</a></li>
+                <li><a href="#pipeline">Hiring Pipeline</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="buttons">
+                <a href="login.html" class="login">Login</a>
+                <a href="register.html" class="register">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h1>Find Work That Matches Your Skills</h1>
             <p>
-                SkillMatch Toledo is a web-based employment platform that helps local job seekers
-                find jobs that match their skills while helping employers hire qualified
-                applicants more efficiently.
+                SkillMatch Toledo connects job seekers and employers across Toledo and
+                neighbouring towns. Matching runs on the skills you already have and the
+                experience you have picked up, whether that came from a diploma,
+                a TESDA certificate, an apprenticeship, or learning on your own.
             </p>
-        </section>
-
-        <section id="features" class="features">
-            <h2>Platform Features</h2>
-
-            <div class="cards">
-                <div class="card">
-                    <h3>Skill Matching</h3>
-                    <p>Receive job recommendations based on your skills and experience.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Easy Job Search</h3>
-                    <p>Search jobs by location, category, salary, or company.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Employers</h3>
-                    <p>Browse opportunities posted by employers.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Application Tracking</h3>
-                    <p>Monitor the status of your applications in one place.</p>
-                </div>
+            <div class="hero-actions">
+                <a href="register.html" class="btn">Get Started</a>
+                <a href="jobs.html" class="btn btn-outline">Browse Jobs</a>
             </div>
-        </section>
+        </div>
 
-        <section class="how">
-            <h2>How It Works</h2>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800" alt="People working together">
+        </div>
+    </section>
 
-            <div class="steps">
-                <div class="step">
-                    <h3>1</h3>
-                    <p>Create an Account</p>
-                </div>
+    <section class="open-banner">
+        <h2>Open to everyone</h2>
+        <p>
+            You do not need a college diploma to use SkillMatch. TESDA holders, vocational
+            graduates, skilled tradespeople, self-taught workers, career changers, and
+            experienced professionals are all welcome here. Your employer chooses the
+            requirements for their role, and you choose which of those roles to apply to.
+        </p>
+    </section>
 
-                <div class="step">
-                    <h3>2</h3>
-                    <p>Complete Your Profile</p>
-                </div>
+    <section id="how" class="how">
+        <h2>How It Works</h2>
 
-                <div class="step">
-                    <h3>3</h3>
-                    <p>Find Matching Jobs</p>
-                </div>
-
-                <div class="step">
-                    <h3>4</h3>
-                    <p>Apply Online</p>
-                </div>
+        <div class="steps">
+            <div class="step">
+                <h3>1</h3>
+                <p>Create an account as a job seeker or an employer</p>
             </div>
-        </section>
 
-        <section id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <p>Email: skillmatch96@gmail.com</p>
-            <p>Location: Toledo, Philippines</p>
-        </section>
+            <div class="step">
+                <h3>2</h3>
+                <p>Add your skills and experience, or post your opening</p>
+            </div>
 
-        <footer>
-            <p>© <span id="year">2026</span> SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
-        </footer>
+            <div class="step">
+                <h3>3</h3>
+                <p>See a match score on every role, sorted for you</p>
+            </div>
 
-        <script src="js/main.js"></script>
+            <div class="step">
+                <h3>4</h3>
+                <p>Apply, then follow your status through to a decision</p>
+            </div>
+        </div>
+    </section>
 
-    </body>
+    <section id="pipeline" class="pipeline-demo">
+        <h3>The hiring pipeline is the same on both sides</h3>
+
+        <ul class="pipe-steps">
+            <li><span class="status-badge st-info">Applied</span><span>The employer reviews your application and your skills.</span></li>
+            <li><span class="status-badge st-primary">Shortlisted</span><span>You are interested in them, and your contact details are shared.</span></li>
+            <li><span class="status-badge st-warn">Interview</span><span>You agree on a time and place, and see the employer's details.</span></li>
+            <li><span class="status-badge st-success">Hired</span><span>You have the job.</span></li>
+        </ul>
+
+        <p class="hint">
+            You can withdraw at any time while you are still in Applied, Shortlisted, or
+            Interview, and you can re-apply later. Salary is optional to post, so an honest
+            employer can hire without hiding the pay behind a listing.
+        </p>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:skillmatch96@gmail.com">skillmatch96@gmail.com</a></p>
+        <p>Location: Toledo, Cebu, Philippines</p>
+       
+    </section>
+
+    <footer>
+        <p>&copy; <span data-year>2026</span> SkillMatch Toledo | All Rights Reserved</p>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
 </html>
