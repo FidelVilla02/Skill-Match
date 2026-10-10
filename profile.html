@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile | SkillMatch Toledo</title>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+        <header>
+            <nav>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <div class="logo">
+                    <h2>SkillMatch Toledo</h2>
+                </div>
+
+                <ul id="navLinks">
+                    
+                    <li id="navFindJobs" hidden><a href="jobs.html">Find Jobs</a></li>
+                    <li id="navDashboard" hidden><a href="dashboard.html">Dashboard</a></li>
+                    <li id="navApplicants" hidden><a href="applicants.html">Applicants</a></li>
+                    <li id="navMyApps" hidden><a href="my-applications.html">My Applications</a></li>
+                    <li id="navPostJob" hidden><a href="employer-post.html">Post a Job</a></li>
+                    <li><a href="profile.html" class="active">Profile</a></li>
+                </ul>
+
+                <div class="buttons">
+                    <span class="nav-user">Hi, <strong id="navName">User</strong></span>
+                    <a href="#" id="logoutBtn" class="login">Logout</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="dashboard">
+
+            <div class="dashboard-head">
+                <h1>Your Profile</h1>
+                <p id="profileIntro">This is what employers see when they review your application.</p>
+            </div>
+
+            <div class="profile-layout">
+
+                <form id="profileForm" class="post-box" autocomplete="off">
+
+                    <h2 id="formHeading">Profile details</h2>
+
+                    <div class="input-box">
+                        <label for="username">User Name</label>
+                        <input type="text" id="username" placeholder="e.g. delia.ramos" autocomplete="username">
+                        <p class="hint">3-20 characters. Letters, numbers, dots and underscores. This is how you appear in the app.</p>
+                    </div>
+
+                    <!-- ---------- SEEKER ---------- -->
+                    <div id="seekerPane">
+                        <div class="input-box">
+                            <label for="headline">One-line introduction</label>
+                            <input type="text" id="headline" placeholder="e.g. Welder with 5 years fabrication experience">
+                        </div>
+
+                        <div class="input-box">
+                            <label for="skills">Your skills</label>
+                            <input type="text" id="skills" placeholder="e.g. Welding, Blueprint Reading, Grinding">
+                            <p class="hint">Comma separated. These are what we match against job requirements.</p>
+                        </div>
+
+                        <div class="two-col">
+                            <div class="input-box">
+                                <label for="experience">Experience level</label>
+                                <select id="experience"></select>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="education">Education</label>
+                                <select id="education"></select>
+                            </div>
+                        </div>
+
+                        <p class="hint hint-block">
+                            <strong>Education is optional and never used for ranking.</strong>
+                            Leaving it blank is completely fine - it does not affect your match score,
+                            and nobody is blocked from applying because of it.
+                        </p>
+
+                        <div class="input-box">
+                            <label for="certifications">Certifications <span class="legend-note">optional</span></label>
+                            <input type="text" id="certifications" placeholder="e.g. TESDA NC II Welding">
+                        </div>
+
+                        <div class="two-col">
+                            <div class="input-box">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" placeholder="e.g. Toledo, Cebu">
+                            </div>
+
+                            <div class="input-box">
+                                <label for="phone">Contact number</label>
+                                <input type="text" id="phone" placeholder="09XX XXX XXXX">
+                                <p class="hint">Shared only after an employer shortlists you.</p>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="bio">About you <span class="legend-note">optional</span></label>
+                            <textarea id="bio" rows="4" placeholder="What you have done, what you are good at."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- ---------- EMPLOYER ---------- -->
+                    <div id="employerPane" hidden>
+                        <div class="input-box">
+                            <label for="businessName">Business Name</label>
+                            <input type="text" id="businessName" placeholder="e.g. Ramos Mini Mart">
+                        </div>
+
+                        <div class="two-col">
+                            <div class="input-box">
+                                <label for="businessType">Type of business</label>
+                                <select id="businessType">
+                                    <option value="Startup">Startup</option>
+                                    <option value="Small Business">Small Business</option>
+                                    <option value="Established">Established company</option>
+                                    <option value="Enterprise">Enterprise</option>
+                                    <option value="Non-profit">Non-profit</option>
+                                </select>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="businessSize">Team size</label>
+                                <select id="businessSize">
+                                    <option value="Just me">Just me</option>
+                                    <option value="1-10 employees">1-10 employees</option>
+                                    <option value="11-50 employees">11-50 employees</option>
+                                    <option value="51-200 employees">51-200 employees</option>
+                                    <option value="200+ employees">200+ employees</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="industry">Industry</label>
+                            <select id="industry"></select>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="businessAbout">About your business <span class="legend-note">optional</span></label>
+                            <textarea id="businessAbout" rows="4" placeholder="What you do, and what kind of help you usually need."></textarea>
+                        </div>
+
+                        <div class="two-col">
+                            <div class="input-box">
+                                <label for="businessAddress">Address</label>
+                                <input type="text" id="businessAddress" placeholder="e.g. Poblacion, Toledo, Cebu">
+                            </div>
+
+                            <div class="input-box">
+                                <label for="businessPhone">Contact number</label>
+                                <input type="text" id="businessPhone" placeholder="09XX XXX XXXX">
+                                <p class="hint">Applicants see this once shortlisted.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-btn">Save Profile</button>
+                </form>
+
+                <aside class="post-box profile-preview">
+                    <h2>How you appear to employers</h2>
+                    <div id="previewBox"></div>
+                </aside>
+
+            </div>
+
+        </section>
+
+        <footer>
+            <p>&copy; <span data-year>2026</span> SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
+        </footer>
+
+        <script src="js/utils.js"></script>
+        <script src="js/store.js"></script>
+        <script src="js/profile.js"></script>
+
+    </body>
+</html>
