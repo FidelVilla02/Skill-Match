@@ -44,4 +44,38 @@ document.addEventListener('DOMContentLoaded', () => {
         yearEl.textContent = new Date().getFullYear();
     }
 
+});// Landing page interactions
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle) {
+        bindMenuToggle(menuToggle, document.getElementById('navLinks'));
+    }
+
+    // ---------- SCROLL SPY ----------
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('#navLinks li a');
+
+    function highlightNav() {
+        let current = 'home';
+
+        sections.forEach(section => {
+            if (window.scrollY >= section.offsetTop - 130) {
+                current = section.id;
+            }
+        });
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('active', href === '#' + current);
+        });
+    }
+
+    if (sections.length && navLinks.length) {
+        highlightNav();
+        window.addEventListener('scroll', highlightNav, { passive: true });
+    }
+
 });
