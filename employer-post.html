@@ -11,17 +11,24 @@
 
         <header>
             <nav>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
                 <div class="logo">
                     <h2>SkillMatch Toledo</h2>
                 </div>
 
-                <ul>
-                    <li><a href="index.html">Home</a></li>
+                <ul id="navLinks">
+                    
                     <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="applicants.html">Applicants</a></li>
                     <li><a href="employer-post.html" class="active">Post a Job</a></li>
+                    <li><a href="profile.html">Business</a></li>
                 </ul>
 
                 <div class="buttons">
+                    <span class="nav-user">Hi, <strong id="navName">Employer</strong></span>
                     <a href="#" id="logoutBtn" class="login">Logout</a>
                 </div>
             </nav>
@@ -31,7 +38,7 @@
 
             <div class="dashboard-head">
                 <h1>Post a Job</h1>
-                <p>Create and publish a job listing to attract qualified and experienced applicants.</p>
+                <p>Any business can post here. Describe the role and list exactly what you need.</p>
             </div>
 
             <div class="post-layout">
@@ -39,48 +46,109 @@
                 <div class="post-box">
                     <h2>New Job Listing</h2>
 
-                 <form id="postForm">
+                    <form id="postForm" autocomplete="off">
 
                         <div class="input-box">
-                            <label>Job Title</label>
-                            <input type="text" id="jobTitle" placeholder="e.g. Web Developer" required>
+                            <label for="jobTitle">Job Title</label>
+                            <input type="text" id="jobTitle" placeholder="e.g. Welder, Cashier, Bookkeeper" required>
                         </div>
 
                         <div class="input-box">
-                            <label>Company Name</label>
-                            <input type="text" id="company" placeholder="e.g. Toledo Tech Solutions" required>
+                            <label for="company">Business Name</label>
+                            <input type="text" id="company" placeholder="e.g. Ramos Mini Mart" required>
                         </div>
 
                         <div class="input-box">
-                            <label>Category</label>
-                            <select id="category">
-                                <option value="IT">IT</option>
-                                <option value="Design">Design</option>
-                                <option value="Finance">Finance</option>
-                                <option value="Customer Service">Customer Service</option>
-                                <option value="Engineering">Engineering</option>
-                            </select>
+                            <label for="category">Category</label>
+                            <select id="category" required></select>
+                        </div>
+
+                        <div class="two-col">
+                            <div class="input-box">
+                                <label for="employmentType">Employment Type</label>
+                                <select id="employmentType">
+                                    <option value="Full-time">Full-time</option>
+                                    <option value="Part-time">Part-time</option>
+                                    <option value="Contractual">Contractual</option>
+                                    <option value="Job-order">Job-order</option>
+                                    <option value="Internship">Internship</option>
+                                </select>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="workSetup">Work Setup</label>
+                                <select id="workSetup">
+                                    <option value="On-site">On-site</option>
+                                    <option value="Remote">Remote</option>
+                                    <option value="Hybrid">Hybrid</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="input-box">
-                            <label>Location</label>
-                            <input type="text" id="location" placeholder="e.g. Toledo, PH" required>
+                            <label for="location">Location</label>
+                            <input type="text" id="location" placeholder="e.g. Toledo, Cebu" required>
+                        </div>
+
+                        <fieldset class="salary-box">
+                            <legend>Salary <span class="legend-note">optional</span></legend>
+
+                            <label class="check-row" for="salaryDisclosed">
+                                <input type="checkbox" id="salaryDisclosed" checked>
+                                <span>Show the pay range on the job post</span>
+                            </label>
+
+                            <div class="two-col">
+                                <div class="input-box">
+                                    <label for="salaryType">Pay Period</label>
+                                    <select id="salaryType">
+                                        <option value="Monthly">Monthly</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Hourly">Hourly</option>
+                                        <option value="Per project">Per project</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-box">
+                                    <label for="salary">Range</label>
+                                    <input type="text" id="salary" placeholder="e.g. PHP 500 - 650">
+                                </div>
+                            </div>
+
+                            <p class="hint" id="salaryHint">Leave empty to show "Salary not disclosed".</p>
+                        </fieldset>
+
+                        <div class="input-box">
+                            <label for="description">About the role</label>
+                            <textarea id="description" rows="3" placeholder="What the person will actually do day to day."></textarea>
                         </div>
 
                         <div class="input-box">
-                            <label>Salary Range</label>
-                            <input type="text" id="salary" placeholder="e.g. PHP 25,000 - 35,000">
+                            <label for="responsibilities">Responsibilities <span class="legend-note">one per line</span></label>
+                            <textarea id="responsibilities" rows="4" placeholder="Handle cash carefully&#10;Stock shelves"></textarea>
                         </div>
 
                         <div class="input-box">
-                            <label>Required Skills (comma separated)</label>
-                            <input type="text" id="skills" placeholder="e.g. JavaScript, HTML, CSS">
+                            <label for="benefits">Benefits <span class="legend-note">optional</span></label>
+                            <input type="text" id="benefits" placeholder="e.g. Meal allowance, free uniform">
                         </div>
 
-                        <button type="submit" class="login-btn">
-                            Post Job
-                        </button>
+                        <div class="input-box">
+                            <label for="skills">Matching Skills <span class="legend-note">comma separated</span></label>
+                            <input type="text" id="skills" placeholder="e.g. Cash Handling, Customer Service">
+                            <p class="hint">These drive the match score on the seeker's side.</p>
+                        </div>
 
+                        <div class="input-box">
+                            <label>What you require <span class="legend-note">optional</span></label>
+                            <p class="hint">List what a person must have or would be nice to have. Applicants tick these when they apply.</p>
+
+                            <div id="reqBuilder" class="req-builder"></div>
+
+                            <button type="button" class="btn-ghost btn-sm" id="addReqBtn">+ Add a requirement</button>
+                        </div>
+
+                        <button type="submit" class="login-btn">Post Job</button>
                     </form>
                 </div>
 
@@ -93,9 +161,11 @@
         </section>
 
         <footer>
-            <p>© 2026 SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
+            <p>&copy; <span data-year>2026</span> SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
         </footer>
 
+        <script src="js/utils.js"></script>
+        <script src="js/store.js"></script>
         <script src="js/employer-post.js"></script>
 
     </body>

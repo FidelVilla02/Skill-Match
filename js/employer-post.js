@@ -1,123 +1,238 @@
-// Employer job posting
+// Employer job posting - works for any business size
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ---------- GUARD: employers only ----------
-    const currentUser = JSON.parse(localStorage.getItem('smCurrentUser') || 'null');
+    const user = requireRole('employer');
+    if (!user) return;
 
-    if (!currentUser) {
-        window.location.href = 'login.html';
-        return;
-    }
+    const me = getMe();
+    const biz = (me && me.employer) || {};
 
-    if (currentUser.role !== 'employer') {
-        window.location.href = 'jobs.html';
-        return;
-    }
-
-    // ---------- ELEMENTS ----------
     const postForm = document.getElementById('postForm');
-    const jobTitle = document.getElementById('jobTitle');
-    const company = document.getElementById('company');
-    const category = document.getElementById('category');
-    const location = document.getElementById('location');
-    const salary = document.getElementById('salary');
-    const skills = document.getElementById('skills');
     const myJobsList = document.getElementById('myJobsList');
-    const logoutBtn = document.getElementById('logoutBtn');
+    const reqBuilder = document.getElementById('reqBuilder');
+    const salaryDisclosed = document.getElementById('salaryDisclosed');
+    const salaryInput = document.getElementById('salary');
 
-    // ---------- RENDER MY POSTED JOBS ----------
+    greetInto('navName', user);
+
+    function greetInto(elId, session) {
+        const el = document.getElementById(elId);
+        if (el) el.textContent = greetName(session);
+    }
+
+    // ---------- REQUIREMENTS BUILDER ----------
+
+    function addReqRow(label, required) {
+        const row = document.createElement('div');
+        row.className = 'req-input-row';
+        row.innerHTML =
+            '<input type="text" class="req-input" placeholder="e.g. Can work on weekends" value="' + esc(label || '') + '">' +
+            '<label class="req-required">' +
+                '<input type="checkbox" class="req-req-check"' + (required ? ' checked' : '') + '>' +
+                '<span>Required</span>' +
+            '</label>' +
+            '<button type="button" class="req-remove" data-remove-req aria-label="Remove requirement">&times;</button>';
+        reqBuilder.appendChild(row);
+        return row;
+    }
+
+    function collectRequirements() {
+        return Array.from(reqBuilder.querySelectorAll('.req-input-row'))
+            .map(row => {
+                const input = row.querySelector('.req-input');
+                const check = row.querySelector('.req-req-check');
+                const text = (input.value || '').trim();
+                return text ? { label: text, required: !!check.checked } : null;
+            })
+            .filter(Boolean);
+    }
+
+    document.getElementById('addReqBtn').addEventListener('click', () => {
+        addReqRow('', false);
+    });
+
+    reqBuilder.addEventListener('click', (e) => {
+        if (e.target.closest('[data-remove-req]')) e.target.closest('.req-input-row').remove();
+    });
+
+    // ---------- SALARY TOGGLE ----------
+
+    function syncSalary() {
+        const shown = salaryDisclosed.checked;
+        salaryInput.disabled = !shown;
+        if (!shown) salaryInput.value = '';
+    }
+
+    salaryDisclosed.addEventListener('change', syncSalary);
+
+    // ---------- MY POSTINGS ----------
+
     function renderMyJobs() {
-        if (!myJobsList) return;
-
-        const allJobs = JSON.parse(localStorage.getItem('smJobs') || '[]');
-        const myJobs = allJobs.filter(job => job.employer === currentUser.email);
+        const myJobs = getMyJobs(user.email);
 
         if (!myJobs.length) {
-            myJobsList.innerHTML = '<p class="empty">You have not posted any jobs yet.</p>';
+            myJobsList.innerHTML =
+                '<p class="empty">You have not posted any jobs yet. ' +
+                '<a href="#" data-go-post>Post your first one</a>.</p>';
             return;
         }
 
-        myJobsList.innerHTML = myJobs.map(job => `
-            <div class="job-card my-job">
-                <div class="job-card-top">
-                    <h3>${job.title}</h3>
-                    <span class="job-posted">${job.posted}</span>
-                </div>
-                <p class="job-company">${job.company} · ${job.location}</p>
-                <p class="job-salary">${job.salary}</p>
-                <button class="delete-btn" data-id="${job.id}">Delete</button>
-            </div>
-        `).join('');
+        myJobsList.innerHTML = myJobs.map(job => {
+            const applicants = countApplicants(job.id);
+            const reqCount = (job.requirements || []).length;
+
+            return '' +
+            '<article class="job-card my-job">' +
+                '<div class="job-card-top">' +
+                    '<h3>' + esc(job.title) + '</h3>' +
+                    (job.status === 'closed'
+                        ? '<span class="status-badge st-muted">Closed</span>'
+                        : '<span class="status-badge st-success">Open</span>') +
+                '</div>' +
+                '<p class="job-company">' + esc(job.company) + ' &middot; ' + esc(job.location) + '</p>' +
+                '<p class="job-salary' + (!job.salaryDisclosed || !job.salary ? ' is-hidden-salary' : '') + '">' +
+                    (job.salaryDisclosed && job.salary ? esc(job.salary) : 'Salary not disclosed') + '</p>' +
+                '<p class="stat-applicants">' + applicants + ' applicant(s) &middot; ' + reqCount + ' requirement(s)</p>' +
+                '<div class="job-actions">' +
+                    '<a class="btn-ghost" href="applicants.html?job=' + encodeURIComponent(job.id) + '">View Applicants</a>' +
+                    '<button type="button" class="btn-ghost" data-toggle="' + esc(job.id) + '">' +
+                        (job.status === 'closed' ? 'Reopen' : 'Close') +
+                    '</button>' +
+                    '<button type="button" class="delete-btn" data-id="' + esc(job.id) + '">Delete</button>' +
+                '</div>' +
+            '</article>';
+        }).join('');
     }
 
-    // ---------- HANDLE POST ----------
-    if (postForm) {
-        postForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+    // ---------- SUBMIT ----------
 
-            const title = jobTitle.value.trim();
-            const companyName = company.value.trim();
-            const jobCategory = category.value;
-            const jobLocation = location.value.trim();
-            const salaryRange = salary.value.trim();
-            const skillList = skills.value.split(',').map(s => s.trim()).filter(Boolean);
+    postForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-            if (!title || !companyName || !jobLocation) {
-                alert('Please fill out all required fields.');
-                return;
+        const title = val('jobTitle');
+        const companyName = val('company');
+        const jobCategory = val('category');
+        const jobLocation = val('location');
+        const salaryRange = val('salary');
+        const salaryType = val('salaryType');
+        const skills = splitList(val('skills'));
+        const requirements = collectRequirements();
+
+        if (!title || !companyName || !jobCategory || !jobLocation) {
+            toast('Please fill in the title, business name, category, and location.', 'danger');
+            return;
+        }
+
+        if (!skills.length) {
+            toast('Add at least one matching skill so we can rank applicants for you.', 'warn');
+            return;
+        }
+
+        // Withholding pay is allowed and normal for some businesses
+        const disclosed = salaryDisclosed.checked;
+        if (disclosed && salaryRange === '' && !confirm('You left the range empty. Post it as "Salary not disclosed"?')) {
+            return;
+        }
+
+        addJob({
+            id: newId('job'),
+            title: title,
+            company: companyName,
+            category: jobCategory,
+            location: jobLocation,
+            description: val('description'),
+            responsibilities: val('responsibilities'),
+            benefits: val('benefits'),
+            employmentType: val('employmentType'),
+            workSetup: val('workSetup'),
+            salary: disclosed ? salaryRange : null,
+            salaryType: salaryType,
+            salaryDisclosed: disclosed && !!salaryRange,
+            skills: skills,
+            requirements: requirements,
+            posted: new Date().toISOString(),
+            status: 'open',
+            employer: user.email,
+            employerName: biz.businessName || companyName
+        });
+
+        postForm.reset();
+        reqBuilder.innerHTML = '';
+        syncSalary();
+        toast('Job posted. Applicants can now send you their details.', 'success');
+        renderMyJobs();
+    });
+
+    // ---------- LIST EVENTS ----------
+
+    myJobsList.addEventListener('click', async (e) => {
+        if (e.target.closest('[data-go-post]')) {
+            document.getElementById('jobTitle').focus();
+            return;
+        }
+
+        const toggle = e.target.closest('[data-toggle]');
+        if (toggle) {
+            const all = getJobs();
+            const job = all.find(j => j.id === toggle.dataset.toggle);
+            if (job) {
+                job.status = job.status === 'closed' ? 'open' : 'closed';
+                saveJobs(all);
+                toast(job.status === 'open' ? 'Job reopened.' : 'Job closed.', 'info');
+                renderMyJobs();
             }
+            return;
+        }
 
-            const allJobs = JSON.parse(localStorage.getItem('smJobs') || '[]');
+        const btn = e.target.closest('.delete-btn');
+        if (!btn) return;
 
-            const newJob = {
-                id: Date.now(),
-                title,
-                company: companyName,
-                category: jobCategory === 'All' ? 'Other' : jobCategory,
-                location: jobLocation,
-                salary: salaryRange || 'Negotiable',
-                skills: skillList,
-                posted: 'today',
-                employer: currentUser.email
-            };
-
-            allJobs.unshift(newJob);
-            localStorage.setItem('smJobs', JSON.stringify(allJobs));
-
-            postForm.reset();
-            alert('Job posted successfully!');
-            renderMyJobs();
+        const ok = await confirmDialog({
+            title: 'Delete this job post?',
+            message: 'Applicants who sent their details for this job will be removed too. This cannot be undone.',
+            confirmText: 'Delete job',
+            danger: true
         });
-    }
 
-    // ---------- HANDLE DELETE ----------
-    if (myJobsList) {
-        myJobsList.addEventListener('click', (e) => {
-            const btn = e.target.closest('.delete-btn');
-            if (!btn) return;
+        if (!ok) return;
 
-            if (!confirm('Are you sure you want to permanently delete this job posting?')) return;
+        deleteJob(btn.dataset.id);
+        toast('Job posting deleted.', 'info');
+        renderMyJobs();
+    });
 
-            const jobId = Number(btn.dataset.id);
-            const allJobs = JSON.parse(localStorage.getItem('smJobs') || '[]');
-            const updated = allJobs.filter(job => job.id !== jobId);
-            localStorage.setItem('smJobs', JSON.stringify(updated));
+    // ---------- LOGOUT / NAV ----------
 
-            alert('Job posting deleted.');
-            renderMyJobs();
+    document.getElementById('logoutBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        logout();
+        window.location.href = 'index.html';
+    });
+
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle) bindMenuToggle(menuToggle, document.getElementById('navLinks'));
+
+    // ---------- INIT ----------
+
+    CATEGORY_GROUPS.forEach(group => {
+        const og = document.createElement('optgroup');
+        og.label = group.label;
+        group.items.forEach(item => {
+            const opt = document.createElement('option');
+            opt.value = item;
+            opt.textContent = item;
+            og.appendChild(opt);
         });
-    }
+        document.getElementById('category').appendChild(og);
+    });
 
-    // ---------- LOGOUT ----------
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('smCurrentUser');
-            window.location.href = 'index.html';
-        });
-    }
+    // Prefill the business name from the profile so repeat posting is quick
+    const companyField = document.getElementById('company');
+    if (!companyField.value && biz.businessName) companyField.value = biz.businessName;
 
+    syncSalary();
+    addReqRow('', true);
     renderMyJobs();
 
 });
