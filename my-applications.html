@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Applications | SkillMatch Toledo</title>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+        <header>
+            <nav>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <div class="logo">
+                    <h2>SkillMatch Toledo</h2>
+                </div>
+
+                <ul id="navLinks">
+                    
+                    <li><a href="jobs.html">Find Jobs</a></li>
+                    <li><a href="my-applications.html" class="active">My Applications</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+
+                <div class="buttons">
+                    <span class="nav-user">Hi, <strong id="navName">User</strong></span>
+                    <a href="#" id="logoutBtn" class="login">Logout</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="dashboard">
+
+            <div class="dashboard-head">
+                <h1>My Applications</h1>
+                <p>Welcome back, <strong id="userName">User</strong>! Track every application in one place.</p>
+            </div>
+
+            <div class="demo-guard" id="demoGuard"></div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 id="statActive">0</h3>
+                    <p>Still Open</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="statInterviews">0</h3>
+                    <p>Interviews</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="statHired">0</h3>
+                    <p>Hired</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="statClosed">0</h3>
+                    <p>Closed</p>
+                </div>
+            </div>
+
+            <div id="appList" class="applicant-list"></div>
+
+        </section>
+
+        <footer>
+            <p>&copy; <span data-year>2026</span> SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
+        </footer>
+
+        <script src="js/utils.js"></script>
+        <script src="js/store.js"></script>
+        <script src="js/my-applications.js"></script>
+
+    </body>
+</html>
