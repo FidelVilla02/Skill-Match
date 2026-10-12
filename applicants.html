@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Applicants | SkillMatch Toledo</title>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+
+        <header>
+            <nav>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <div class="logo">
+                    <h2>SkillMatch Toledo</h2>
+                </div>
+
+                <ul id="navLinks">
+                    
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="applicants.html" class="active">Applicants</a></li>
+                    <li><a href="employer-post.html">Post a Job</a></li>
+                    <li><a href="profile.html">Business</a></li>
+                </ul>
+
+                <div class="buttons">
+                    <span class="nav-user">Hi, <strong id="navName">Employer</strong></span>
+                    <a href="#" id="logoutBtn" class="login">Logout</a>
+                </div>
+            </nav>
+        </header>
+
+        <section class="dashboard">
+
+            <div class="dashboard-head">
+                <h1>Review Applicants</h1>
+                <p>Welcome back, <strong id="userName">Employer</strong>! Shortlist, interview, or hire.</p>
+            </div>
+
+            <div class="dashboard-filters">
+                <select id="jobFilter">
+                    <option value="all">All my job posts</option>
+                </select>
+                <select id="statusFilter">
+                    <option value="all">Every status</option>
+                    <option value="open">Still open (not rejected or withdrawn)</option>
+                    <option value="Applied">Applied</option>
+                    <option value="Shortlisted">Shortlisted</option>
+                    <option value="Interview">Interview</option>
+                    <option value="Hired">Hired</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+            </div>
+
+            <div id="applicantList" class="applicant-list"></div>
+
+        </section>
+
+        <footer>
+            <p>&copy; <span data-year>2026</span> SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
+        </footer>
+
+        <script src="js/utils.js"></script>
+        <script src="js/store.js"></script>
+        <script src="js/applicants.js"></script>
+
+    </body>
+</html>
