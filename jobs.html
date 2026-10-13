@@ -11,16 +11,23 @@
 
         <header>
             <nav>
+                <button type="button" class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+
                 <div class="logo">
                     <h2>SkillMatch Toledo</h2>
                 </div>
 
-                <ul>
-                    <li><a href="index.html">Home</a></li>
+                <ul id="navLinks">
+                    
                     <li><a href="jobs.html" class="active">Find Jobs</a></li>
+                    <li><a href="my-applications.html">My Applications</a></li>
+                    <li><a href="profile.html">Profile</a></li>
                 </ul>
 
                 <div class="buttons">
+                    <span class="nav-user">Hi, <strong id="navName">User</strong></span>
                     <a href="#" id="logoutBtn" class="login">Logout</a>
                 </div>
             </nav>
@@ -30,18 +37,33 @@
 
             <div class="dashboard-head">
                 <h1>Find Jobs</h1>
-                <p>Welcome back, <strong id="userName">User</strong>! Find jobs that match your skills.</p>
+                <p>Welcome back, <strong id="userName">User</strong>! Jobs ranked by how well your skills fit.</p>
             </div>
+
+            <div class="profile-nudge" id="profileNudge" hidden>
+                <p><strong>Your profile is empty.</strong> Add your skills so we can rank jobs for you.</p>
+                <a href="profile.html" class="btn">Add my skills</a>
+            </div>
+
+            <div class="demo-guard" id="demoGuard"></div>
 
             <div class="dashboard-filters">
                 <input type="text" id="searchInput" placeholder="Search by title, company, or skill...">
                 <select id="categoryFilter">
                     <option value="All">All Categories</option>
-                    <option value="IT">IT</option>
-                    <option value="Design">Design</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Customer Service">Customer Service</option>
-                    <option value="Engineering">Engineering</option>
+                </select>
+                <select id="typeFilter">
+                    <option value="All">Any Job Type</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contractual">Contractual</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Job-order">Job-order</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="match">Best Match</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
                 </select>
             </div>
 
@@ -53,9 +75,12 @@
         </section>
 
         <footer>
-            <p>© 2026 SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
+            <p>&copy; <span data-year>2026</span> SkillMatch Toledo | Application Development and Emerging Techniques Project</p>
         </footer>
 
+        <script src="js/utils.js"></script>
+        <script src="js/store.js"></script>
         <script src="js/jobs.js"></script>
+
     </body>
 </html>
