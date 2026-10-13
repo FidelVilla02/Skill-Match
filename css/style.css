@@ -16,6 +16,17 @@ html{
 body{ 
     background:#F3F8FD; 
     color:#16283D; 
+    min-height:100vh; 
+    display:flex; 
+    flex-direction:column; 
+} 
+
+/* Keep the header, content sections and footer from being squeezed when the
+   body is a flex column, so short pages still pin the footer to the bottom. */
+header, 
+footer, 
+section{ 
+    flex-shrink:0; 
 } 
  
 /* ================= NAVBAR ================= */ 
@@ -422,6 +433,7 @@ nav ul li a.active{
 .dashboard{ 
     width:90%; 
     margin:60px auto; 
+    flex:1 0 auto; 
 } 
  
 .dashboard-head{ 
@@ -673,8 +685,8 @@ nav ul li a.active{
         grid-template-columns:1fr; 
     } 
 
-    .demo-table{ 
-        font-size:12px; 
+    .demo-card-head{ 
+        align-items:flex-start; 
     } 
 } 
 
@@ -907,33 +919,56 @@ nav ul li a.active{
     text-align:left; 
 } 
 
-.demo-table{ 
-    width:100%; 
-    border-collapse:collapse; 
-    font-size:13px; 
-    margin:10px 0 14px; 
-} 
-
-.demo-table th{ 
+.demo-panel p{ 
     text-align:left; 
-    color:#5D6C80; 
-    font-weight:600; 
-    border-bottom:1px solid #E7F0FB; 
-    padding:7px 6px; 
 } 
 
-.demo-table td{ 
-    border-bottom:1px solid #F3F8FD; 
-    padding:7px 6px; 
-    vertical-align:top; 
+.demo-panel .hint{ 
+    margin:0 0 12px; 
 } 
 
-.demo-table code{ 
+.demo-list{ 
+    list-style:none; 
+    margin:10px 0 14px; 
+    padding:0; 
+    display:flex; 
+    flex-direction:column; 
+    gap:10px; 
+} 
+
+.demo-card{ 
+    background:#F7FAFE; 
+    border:1px solid #E7F0FB; 
+    border-radius:8px; 
+    padding:10px 12px; 
+} 
+
+.demo-card-head{ 
+    display:flex; 
+    align-items:center; 
+    justify-content:space-between; 
+    gap:8px; 
+    flex-wrap:wrap; 
+    margin-bottom:7px; 
+} 
+
+.demo-card code{ 
     background:#E7F0FB; 
     color:#0A4A96; 
     padding:2px 6px; 
     border-radius:4px; 
     font-size:12px; 
+} 
+
+.demo-email{ 
+    margin:0 0 6px; 
+} 
+
+.demo-desc{ 
+    font-size:12px; 
+    color:#5D6C80; 
+    line-height:1.5; 
+    margin:0; 
 } 
 
 /* ================= BUTTONS ================= */
@@ -1954,6 +1989,7 @@ body.modal-open{
     border-radius:15px; 
     padding:38px; 
     box-shadow:0 5px 20px rgba(8,116,67,.09); 
+    flex:1 0 auto; 
 } 
 
 .legal h1{ 
