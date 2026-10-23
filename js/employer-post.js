@@ -129,13 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Withholding pay is allowed and normal for some businesses
-        const disclosed = salaryDisclosed.checked;
-        if (disclosed && salaryRange === '' && !confirm('You left the range empty. Post it as "Salary not disclosed"?')) {
-            return;
-        }
+        // Withholding pay is allowed and normal for some businesses. Leaving the
+        // range empty simply posts as "Salary not disclosed" - no blocking prompt.
+        const hasSalary = salaryRange !== '';
+        const disclosed = salaryDisclosed.checked && hasSalary;
 
-        addJob({
+        const job = {
             id: newId('job'),
             title: title,
             company: companyName,
@@ -148,14 +147,25 @@ document.addEventListener('DOMContentLoaded', () => {
             workSetup: val('workSetup'),
             salary: disclosed ? salaryRange : null,
             salaryType: salaryType,
-            salaryDisclosed: disclosed && !!salaryRange,
+            salaryDisclosed: disclosed,
             skills: skills,
             requirements: requirements,
             posted: new Date().toISOString(),
             status: 'open',
             employer: user.email,
             employerName: biz.businessName || companyName
-        });
+        };
+
+        // Store the job, then confirm it can be read back before clearing the
+        // form, so a storage failure never silently loses what was typed.
+        try {
+            addJob(job);
+            if (!getJob(job.id)) throw new Error('Job was not persisted');
+        } catch (err) {
+            console.error('addJob failed', err);
+            toast('Could not save the job. Check that this browser allows storage, then try again.', 'danger');
+            return;
+        }
 
         postForm.reset();
         reqBuilder.innerHTML = '';

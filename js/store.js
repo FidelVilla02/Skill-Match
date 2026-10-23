@@ -133,13 +133,14 @@ function updateMe(patch) {
     if (!session) return null;
 
     const users = getUsers();
-    const idx = users.findIndex(u => u.email === session.email);
+    const needle = String(session.email || '').trim().toLowerCase();
+    const idx = users.findIndex(u => String(u.email || '').trim().toLowerCase() === needle);
     if (idx === -1) return null;
 
     const role = users[idx].role || 'jobseeker';
     const profileKey = role === 'employer' ? 'employer' : 'seeker';
 
-    users[idx] = Object.assign({}, users[idx], patch[profileKey] || {});
+    users[idx][profileKey] = Object.assign({}, users[idx][profileKey] || {}, patch[profileKey] || {});
     Object.assign(users[idx], patch.top || {});
     saveUsers(users);
 

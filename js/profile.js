@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const topPatch = { username: username };
+        let saved = null;
 
         if (isEmployer) {
             const businessName = val('businessName');
@@ -171,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            updateMe({
+            saved = updateMe({
                 top: topPatch,
                 employer: {
                     businessName: businessName,
@@ -190,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            updateMe({
+            saved = updateMe({
                 top: topPatch,
                 seeker: {
                     headline: val('headline'),
@@ -203,6 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     bio: val('bio')
                 }
             });
+        }
+
+        if (!saved) {
+            toast('Could not save your profile. Please log in again and retry.', 'danger');
+            return;
         }
 
         // Refresh the session so the nav greeting picks up a renamed user

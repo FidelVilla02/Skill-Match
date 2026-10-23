@@ -176,8 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     if (menuToggle) bindMenuToggle(menuToggle, document.getElementById('navLinks'));
 
-    initDemoGuard();
-
     renderStats();
     render();
 

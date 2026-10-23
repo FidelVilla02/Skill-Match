@@ -113,50 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderStats();
         renderPipeline();
         renderMyJobs();
-        renderProfileNudge();
-    }
-
-    // Employers register without business details now, so nudge until the
-    // business name is filled in on the profile page. Mirrors the seeker nudge
-    // on jobs.html, and reuses the same .profile-nudge styling.
-    function renderProfileNudge() {
-        const nudge = document.getElementById('profileNudge');
-        if (!nudge) return;
-        const me = getMe() || {};
-        const business = me.employer || {};
-        nudge.hidden = !!(business.businessName && business.businessName.trim());
-    }
-
-    // ---------- DEMO RESET ----------
-
-    const resetBtn = document.getElementById('resetDemoBtn');
-    if (resetBtn) {
-        resetBtn.addEventListener('click', async () => {
-            const ok = await confirmDialog({
-                title: 'Reset demo data?',
-                message: 'Every account, job post, and application in this browser will be restored to the original demo set.',
-                confirmText: 'Reset',
-                danger: true
-            });
-
-            if (!ok) return;
-
-            // Guarded so a missing/corrupted store surfaces a readable message
-            // instead of a silent ReferenceError in the console.
-            if (typeof resetDemoData !== 'function') {
-                toast('Reset is unavailable right now. Reload the page to try again.', 'error');
-                return;
-            }
-
-            try {
-                resetDemoData();
-                toast('Demo data restored.', 'success');
-                renderAll();
-            } catch (err) {
-                console.error('resetDemoData failed', err);
-                toast('Could not reset the demo data. Reload the page and try again.', 'error');
-            }
-        });
     }
 
     // ---------- LOGOUT / NAV ----------

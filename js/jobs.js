@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortFilter = document.getElementById('sortFilter');
     const jobGrid = document.getElementById('jobGrid');
     const jobCount = document.getElementById('jobCount');
-    const profileNudge = document.getElementById('profileNudge');
 
     greetInto('userName', user);
     greetInto('navName', user);
@@ -321,11 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menuToggle');
     if (menuToggle) bindMenuToggle(menuToggle, document.getElementById('navLinks'));
 
-    initDemoGuard();
-
     // ---------- INIT ----------
-
-    if (profileNudge) profileNudge.hidden = seekerSkills.length > 0;
 
     bindCategories();
     renderJobs();
