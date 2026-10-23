@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin | SkillMatch Toledo</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo"><h2>SkillMatch Toledo</h2></div>
+        <ul id="adminNav">
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#users">Manage Users</a></li>
+          <li><a href="#jobs">Manage Jobs</a></li>
+          <li><a href="#reports">Reports</a></li>
+        </ul>
+        <button class="btn-ghost" id="adminLogout">Logout</button>
+      </nav>
+    </header>
+    <main class="admin-main">
+      <div class="dashboard-head">
+        <p>ADMINISTRATION</p>
+        <h1 id="pageTitle">Dashboard</h1>
+        <p id="pageHint"></p>
+      </div>
+      <div id="filters" class="admin-filters"></div>
+      <div id="content"></div>
+    </main>
+    <script src="js/store.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

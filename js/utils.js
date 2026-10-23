@@ -80,6 +80,9 @@ const EDUCATION_LEVELS = [
 const STATUS_ORDER = ['Applied', 'Shortlisted', 'Interview', 'Hired'];
 
 const STATUS_META = {
+    Pending: { tone: 'warn' },
+    Approved: { tone: 'success' },
+    Hidden: { tone: 'muted' },
     Applied:     { tone: 'info',    hint: 'Waiting for the employer to review' },
     Shortlisted: { tone: 'primary', hint: 'Employer is interested, contact details shared' },
     Interview:   { tone: 'warn',    hint: 'Interview scheduled' },

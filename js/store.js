@@ -109,14 +109,13 @@ function requireRole(role) {
         return null;
     }
 
-    if (role) {
-        const isEmployer = user.role === 'employer';
-        const wantsEmployer = role === 'employer';
-
-        if (isEmployer !== wantsEmployer) {
-            window.location.href = isEmployer ? 'dashboard.html' : 'jobs.html';
-            return null;
-        }
+    const me = findUserByEmail(user.email);
+    if (!me || me.accountStatus === 'suspended') {
+        logout(); window.location.href = 'login.html'; return null;
+    }
+    user.role = me.role;
+    if ((role && user.role !== role) || (!role && user.role === 'admin')) {
+        window.location.href = roleHome(user.role); return null;
     }
 
     return user;
@@ -437,6 +436,7 @@ function seedDemoData() {
     write(KEYS.applications, []);
     write(KEYS.notifications, []);
     localStorage.setItem(KEYS.seedVersion, SEED_VERSION);
+    migrateAdminData();
 }
 
 // Seed on first visit, and reseed whenever SEED_VERSION changes so returning
@@ -471,3 +471,27 @@ try {
 } catch (err) {
     console.error('Demo seed failed', err);
 }
+// Add fields without changing SEED_VERSION or erasing existing browser records.
+function migrateAdminData() {
+    const users = getUsers();
+    if (!users.some(u => u.role === 'admin')) users.push({fullName:'SkillMatch Administrator', username:'admin', email:'admin@skillmatch.demo', password:'admin123', role:'admin', accountStatus:'active', createdAt:new Date().toISOString()});
+    users.forEach(u => { if (!u.accountStatus) u.accountStatus = 'active'; });
+    saveUsers(users);
+    const jobs = getJobs();
+    jobs.forEach(j => { if (!j.approvalStatus) j.approvalStatus = 'Approved'; });
+    saveJobs(jobs);
+}
+function roleHome(role) { return role === 'admin' ? 'admin.html' : role === 'employer' ? 'dashboard.html' : 'jobs.html'; }
+function activeSession(role) {
+    const s = getSession(), u = s && findUserByEmail(s.email);
+    return !!(u && u.accountStatus !== 'suspended' && (!role || u.role === role));
+}
+function isVisibleJob(job) {
+    const owner = job && findUserByEmail(job.employer);
+    return !!(job && job.approvalStatus === 'Approved' && job.status !== 'closed' && owner && owner.accountStatus !== 'suspended');
+}
+try { migrateAdminData(); } catch (err) { console.error('Admin migration failed', err); }
+// Re-check open tabs after account suspension, including same-browser tabs.
+if (typeof window !== 'undefined') window.addEventListener('storage', () => {
+    if (getSession() && !activeSession()) { logout(); window.location.href = 'login.html'; }
+});

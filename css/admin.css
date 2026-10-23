@@ -1,0 +1,149 @@
+.admin-main {
+  max-width: 1180px;
+  margin: 40px auto;
+  padding: 0 24px 60px;
+}
+.admin-filters {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+.admin-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+.admin-filters input,
+.admin-filters select {
+  padding: 11px;
+  border: 1px solid #d4ddd8;
+  border-radius: 8px;
+  background: white;
+  min-width: 160px;
+}
+.admin-table {
+  overflow: auto;
+  background: white;
+  border: 1px solid #dce5df;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+.admin-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 550px;
+}
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #e8eeea;
+  vertical-align: top;
+}
+.admin-table th {
+  background: #eff5f1;
+}
+.admin-table button {
+  margin: 3px;
+}
+.admin-main .stats-grid {
+  margin: 24px 0;
+}
+.admin-main .stat-card {
+  text-decoration: none;
+  color: inherit;
+}
+.admin-main h2 {
+  margin-top: 30px;
+}
+.admin-main .job-card {
+  margin: 16px 0;
+}
+.admin-main .detail-text {
+  white-space: pre-wrap;
+}
+.admin-reason {
+  max-width: 280px;
+}
+#adminNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  list-style: none;
+}
+#adminNav a.active {
+  font-weight: 700;
+  text-decoration: underline;
+}
+.admin-main .btn-ghost,
+.admin-main .btn-primary {
+  cursor: pointer;
+}
+.report-context {
+  padding: 14px;
+  background: #eff5f1;
+  border-radius: 8px;
+}
+.report-context {
+    display: none;
+}
+.admin-main .empty {
+  padding: 24px;
+}
+.admin-detail {
+  display: grid;
+  gap: 10px;
+}
+@media (max-width: 700px) {
+  header nav {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  #adminNav {
+    width: 100%;
+    order: 3;
+    justify-content: center;
+  }
+  .admin-main {
+    padding: 0 14px;
+  }
+  .admin-filters label {
+    flex: 1;
+  }
+  .admin-filters input,
+  .admin-filters select {
+    min-width: 120px;
+    width: 100%;
+  }
+}
+@media print {
+  header,
+  #filters,
+  button,
+  .toast-box {
+    display: none !important;
+  }
+  .admin-main {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .admin-table {
+    overflow: visible;
+  }
+  body {
+    background: white !important;
+  }
+  .admin-table table {
+    min-width: 0;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .stat-card {
+    break-inside: avoid;
+  }
+}

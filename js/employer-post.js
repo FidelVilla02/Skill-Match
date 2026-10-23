@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const user = requireRole('employer');
     if (!user) return;
 
+    let editingId = null;
     const me = getMe();
     const biz = (me && me.employer) || {};
 
@@ -90,11 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         ? '<span class="status-badge st-muted">Closed</span>'
                         : '<span class="status-badge st-success">Open</span>') +
                 '</div>' +
+                '<p>' + statusBadge(job.approvalStatus) + (job.reviewReason ? ' ' + esc(job.reviewReason) : '') + '</p>' +
                 '<p class="job-company">' + esc(job.company) + ' &middot; ' + esc(job.location) + '</p>' +
                 '<p class="job-salary' + (!job.salaryDisclosed || !job.salary ? ' is-hidden-salary' : '') + '">' +
                     (job.salaryDisclosed && job.salary ? esc(job.salary) : 'Salary not disclosed') + '</p>' +
                 '<p class="stat-applicants">' + applicants + ' applicant(s) &middot; ' + reqCount + ' requirement(s)</p>' +
                 '<div class="job-actions">' +
+                    '<button type="button" class="btn-ghost" data-edit="' + esc(job.id) + '">Edit / Resubmit</button>' +
                     '<a class="btn-ghost" href="applicants.html?job=' + encodeURIComponent(job.id) + '">View Applicants</a>' +
                     '<button type="button" class="btn-ghost" data-toggle="' + esc(job.id) + '">' +
                         (job.status === 'closed' ? 'Reopen' : 'Close') +
@@ -110,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     postForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        if (!activeSession('employer')) { logout(); location.href='login.html'; return; }
         const title = val('jobTitle');
         const companyName = val('company');
         const jobCategory = val('category');
@@ -135,7 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const disclosed = salaryDisclosed.checked && hasSalary;
 
         const job = {
-            id: newId('job'),
+            id: editingId || newId('job'),
+            approvalStatus: 'Pending',
+            reviewReason: '',
+            updatedAt: new Date().toISOString(),
             title: title,
             company: companyName,
             category: jobCategory,
@@ -159,7 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Store the job, then confirm it can be read back before clearing the
         // form, so a storage failure never silently loses what was typed.
         try {
-            addJob(job);
+            if (editingId) {
+                const all = getJobs(), old = all.find(j => j.id === editingId && j.employer === user.email);
+                if (!old) throw new Error('Job not found');
+                job.posted = old.posted; job.status = old.status;
+                Object.assign(old, job); saveJobs(all);
+            } else addJob(job);
             if (!getJob(job.id)) throw new Error('Job was not persisted');
         } catch (err) {
             console.error('addJob failed', err);
@@ -167,16 +179,32 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        editingId = null;
+        postForm.querySelector('[type=submit]').textContent = 'Submit for Review';
         postForm.reset();
         reqBuilder.innerHTML = '';
         syncSalary();
-        toast('Job posted. Applicants can now send you their details.', 'success');
+        toast('Job submitted. Waiting for admin approval.', 'success');
         renderMyJobs();
     });
 
     // ---------- LIST EVENTS ----------
 
     myJobsList.addEventListener('click', async (e) => {
+        if (!activeSession('employer')) { logout(); location.href='login.html'; return; }
+        const edit = e.target.closest('[data-edit]');
+        if (edit) {
+            const j = getJob(edit.dataset.edit);
+            if (!j || j.employer !== user.email) return;
+            editingId = j.id;
+            const fields = {jobTitle:'title',company:'company',category:'category',location:'location',description:'description',responsibilities:'responsibilities',benefits:'benefits',employmentType:'employmentType',workSetup:'workSetup',salary:'salary',salaryType:'salaryType'};
+            Object.keys(fields).forEach(id => document.getElementById(id).value = j[fields[id]] || '');
+            document.getElementById('skills').value = (j.skills || []).join(', ');
+            salaryDisclosed.checked = !!j.salaryDisclosed; syncSalary();
+            reqBuilder.innerHTML = ''; (j.requirements || []).forEach(r => addReqRow(r.label,r.required));
+            postForm.querySelector('[type=submit]').textContent = 'Resubmit for Review';
+            document.getElementById('jobTitle').focus(); postForm.scrollIntoView({behavior:'smooth'}); return;
+        }
         if (e.target.closest('[data-go-post]')) {
             document.getElementById('jobTitle').focus();
             return;

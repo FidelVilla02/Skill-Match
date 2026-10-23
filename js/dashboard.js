@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const jobs = getMyJobs(user.email);
         const apps = myApplications();
 
-        setStat('statPostings', jobs.filter(j => j.status !== 'closed').length);
+        setStat('statPostings', jobs.filter(isVisibleJob).length);
         setStat('statApplicants', apps.length);
         setStat('statShortlisted', apps.filter(a => a.status === 'Shortlisted').length);
         setStat('statInterviews', apps.filter(a => a.status === 'Interview').length);
@@ -97,12 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         ? '<span class="status-badge st-muted">Closed</span>'
                         : '<span class="status-badge st-success">Open</span>') +
                 '</div>' +
+                '<p>' + statusBadge(job.approvalStatus) + (job.reviewReason ? ' ' + esc(job.reviewReason) : '') + '</p>' +
                 '<p class="job-company">' + esc(job.company) + ' &middot; ' + esc(job.location) + '</p>' +
                 '<p class="job-salary' + (!job.salaryDisclosed || !job.salary ? ' is-hidden-salary' : '') + '">' +
                     (job.salaryDisclosed && job.salary ? esc(job.salary) : 'Salary not disclosed') + '</p>' +
                 '<div class="job-skills">' + skillTags + '</div>' +
                 '<p class="stat-applicants">' + apps.length + ' applicant(s) &middot; ' + open.length + ' still open</p>' +
                 '<div class="job-actions">' +
+                    '<a class="btn-ghost" href="employer-post.html">Edit / Manage Jobs</a>' +
                     '<a class="btn-ghost" href="applicants.html?job=' + encodeURIComponent(job.id) + '">Review</a>' +
                 '</div>' +
             '</article>';

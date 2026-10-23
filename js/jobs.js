@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------- RENDER ----------
 
     function renderJobs() {
-        const openJobs = getJobs().filter(j => j.status !== 'closed');
+        const openJobs = getJobs().filter(isVisibleJob);
         const keyword = (searchInput.value || '').toLowerCase();
         const category = categoryFilter.value;
         const type = typeFilter.value;
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openJobDetail(jobId) {
         const job = getJob(jobId);
-        if (!job) return;
+        if (!activeSession("jobseeker") || !isVisibleJob(job)) { toast("This job is no longer available.", "warn"); return; }
 
         const score = scoreFor(job);
         const applied = hasApplied(job.id, user.email);
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openApplyModal(jobId) {
         const job = getJob(jobId);
-        if (!job) return;
+        if (!activeSession("jobseeker") || !isVisibleJob(job)) { toast("This job is no longer available.", "warn"); return; }
 
         if (hasApplied(job.id, user.email)) {
             toast('You already applied to this job.', 'warn');
@@ -230,8 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function submitApply(jobId) {
         const job = getJob(jobId);
-        if (!job) return;
+        if (!activeSession("jobseeker") || !isVisibleJob(job)) { toast("This job is no longer available.", "warn"); return; }
 
+        if (hasApplied(jobId, user.email)) { toast('You already applied.', 'warn'); return; }
         const noteEl = document.getElementById('applyNote');
         const note = noteEl ? noteEl.value.trim() : '';
 

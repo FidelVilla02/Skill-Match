@@ -56,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: email,
                 password: password,
                 role: role,
+                accountStatus: "active",
+                createdAt: new Date().toISOString(),
                 seeker: {
                     headline: '',
                     skills: [],
@@ -134,11 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            if (user.accountStatus === "suspended") { toast("Your account is suspended. Contact the administrator.", "danger"); return; }
             setSession(user, !!(remember && remember.checked));
 
             sessionStorage.removeItem('smJustRegistered');
 
-            window.location.href = user.role === 'employer' ? 'dashboard.html' : 'jobs.html';
+            window.location.href = roleHome(user.role);
         });
     }
 
